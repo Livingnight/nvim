@@ -51,8 +51,8 @@ return packer.startup(function(use)
   -- Lua Development
   use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
   use "nvim-lua/popup.nvim"
-  use "christianchiarulli/lua-dev.nvim"
-  -- use "folke/lua-dev.nvim"
+  -- use "christianchiarulli/lua-dev.nvim"
+  use "folke/lua-dev.nvim"
 
   -- LSP
   use "neovim/nvim-lspconfig" -- enable LSP
@@ -81,7 +81,7 @@ return packer.startup(function(use)
   use "https://git.sr.ht/~whynothugo/lsp_lines.nvim"
 
   -- Completion
-  use "christianchiarulli/nvim-cmp"
+  use "hrsh7th/nvim-cmp"
   use "hrsh7th/cmp-buffer" -- buffer completions
   use "hrsh7th/cmp-path" -- path completions
   use "hrsh7th/cmp-cmdline" -- cmdline completions
@@ -121,7 +121,17 @@ return packer.startup(function(use)
   use "tom-anders/telescope-vim-bookmarks.nvim"
 
   -- Note Taking
-  use "mickael-menu/zk-nvim"
+  -- Telekasten
+  use {
+    "renerocksai/telekasten.nvim",
+    requires = {
+      { "nvim-telescope/telescope-symbols.nvim" },
+      { "nvim-telescope/telescope-media-files.nvim" },
+      { "mattn/calendar-vim" },
+      { "seebye/ueberzug" },
+      { "dirkvdb/ffmpegthumbnailer" },
+    },
+  }
 
   -- Color
   use "NvChad/nvim-colorizer.lua"
@@ -175,8 +185,13 @@ return packer.startup(function(use)
   use "folke/todo-comments.nvim"
 
   -- Terminal
-  use "akinsho/toggleterm.nvim"
-
+  use {
+    "akinsho/toggleterm.nvim",
+    tag = "v2.*",
+    config = function()
+      require("toggleterm").setup()
+    end,
+  }
   -- Project
   use "ahmedkhalf/project.nvim"
   use "windwp/nvim-spectre"
@@ -246,7 +261,7 @@ return packer.startup(function(use)
   -- use "nvim-telescope/telescope-ui-select.nvim"
   -- use "nvim-telescope/telescope-file-browser.nvim"
   -- use 'David-Kunz/cmp-npm' -- doesn't seem to work
-  -- use { "christianchiarulli/JABS.nvim" }
+  use { "christianchiarulli/JABS.nvim" }
   -- use "lunarvim/vim-solidity"
   -- use "tpope/vim-repeat"
   -- use "Shatur/neovim-session-manager"

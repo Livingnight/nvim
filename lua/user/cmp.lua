@@ -211,7 +211,7 @@ cmp.setup {
     select = false,
   },
   window = {
-    documentation = false,
+    documentation = cmp.config.window.bordered(),
     -- documentation = {
     --   border = "rounded",
     --   winhighlight = "NormalFloat:Pmenu,NormalFloat:Pmenu,CursorLine:PmenuSel,Search:None",

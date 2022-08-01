@@ -10,11 +10,11 @@ end
 
 comment.setup {
   pre_hook = function(ctx)
-    -- For inlay hints
-    local line_start = (ctx.srow or ctx.range.srow) - 1
-    local line_end = ctx.erow or ctx.range.erow
-    require("lsp-inlayhints.core").clear(0, line_start, line_end)
-
+  --   -- For inlay hints
+  --   local line_start = (ctx.srow or ctx.range.srow) - 1
+  --   local line_end = ctx.erow or ctx.range.erow
+  --   -- require("lsp-inlayhints.core").clear(0, line_start, line_end)
+  --   vim.api.nvim_buf_clear_namespace(0, -1, line_start, line_end)
     local U = require "Comment.utils"
 
     local location = nil
