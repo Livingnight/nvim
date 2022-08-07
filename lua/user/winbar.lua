@@ -34,11 +34,8 @@ M.get_filename = function()
   local f = require "user.functions"
 
   if not f.isempty(filename) then
-    local file_icon, file_icon_color = require("nvim-web-devicons").get_icon_color(
-      filename,
-      extension,
-      { default = true }
-    )
+    local file_icon, file_icon_color =
+      require("nvim-web-devicons").get_icon_color(filename, extension, { default = true })
 
     local hl_group = "FileIconColor" .. extension
 
@@ -47,7 +44,9 @@ M.get_filename = function()
       file_icon = ""
       file_icon_color = ""
     end
-    vim.api.nvim_set_hl(0, "Winbar", { fg = "#6b737f" })
+
+    local navic_text = vim.api.nvim_get_hl_by_name("NavicText", true)
+    vim.api.nvim_set_hl(0, "Winbar", { fg = navic_text.foreground })
 
     return " " .. "%#" .. hl_group .. "#" .. file_icon .. "%*" .. " " .. "%#Winbar#" .. filename .. "%*"
   end
@@ -142,5 +141,25 @@ M.get_winbar = function()
     return
   end
 end
+
+M.create_winbar = function()
+  vim.api.nvim_create_augroup("_winbar", {})
+  if vim.fn.has "nvim-0.8" == 1 then
+    vim.api.nvim_create_autocmd(
+      { "CursorMoved", "CursorHold", "BufWinEnter", "BufFilePost", "InsertEnter", "BufWritePost", "TabClosed" },
+      {
+        group = "_winbar",
+        callback = function()
+          local status_ok, _ = pcall(vim.api.nvim_buf_get_var, 0, "lsp_floating_window")
+          if not status_ok then
+            require("user.winbar").get_winbar()
+          end
+        end,
+      }
+    )
+  end
+end
+
+M.create_winbar()
 
 return M
