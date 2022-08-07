@@ -143,7 +143,7 @@ M.on_attach = function(client, bufnr)
   -- end
 
   if client.name == "tsserver" then
-    require("lsp-inlayhints").on_attach(bufnr, client)
+    -- require("lsp-inlayhints").on_attach(bufnr, client)
   end
 
   if client.name == "jdt.ls" then

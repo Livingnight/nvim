@@ -273,6 +273,8 @@ local mappings = {
     h = { "<cmd>lua require('lsp-inlayhints').toggle()<cr>", "Toggle Hints" },
     H = { "<cmd>IlluminationToggle<cr>", "Toggle Doc HL" },
     I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
+    h = { "<cmd>IlluminationToggle<cr>", "Toggle Doc HL" },
+    I = { "<cmd>Mason<cr>", "Mason Installer Info" },
     j = {
       "<cmd>lua vim.diagnostic.goto_next({buffer=0})<CR>",
       "Next Diagnostic",
