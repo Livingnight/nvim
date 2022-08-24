@@ -14,13 +14,16 @@ null_ls.setup {
   debug = true,
   sources = {
     formatting.prettierd.with {
-      extra_filetypes = { "telekasten", "markdown", "toml", "solidity" },
-      extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" },
+      -- extra_filetypes = { "telekasten", "markdown", "toml", "solidity" },
+      -- extra_args = { "--no-semi", "true", "--single-quote", "true", "--jsx-single-quote", "true" },
+      env = {
+        PRETTIERD_DEFAULT_CONFIG = vim.fn.expand "~/.config/linter-config/.pretterrc.json",
+      },
     },
     formatting.black.with { extra_args = { "--fast" } },
     formatting.stylua,
     formatting.shfmt,
-    formatting.google_java_format,
+    formatting.clang_format,
     -- diagnostics.flake8,
     diagnostics.shellcheck,
   },

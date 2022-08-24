@@ -20,6 +20,9 @@ local buffer_fts = {
   "json",
 }
 
+luasnip.filetype_extend("telekasten", { "markdown" })
+luasnip.filetype_extend("javascript", { "javascriptreact" })
+
 local function contains(t, value)
   for _, v in pairs(t) do
     if v == value then

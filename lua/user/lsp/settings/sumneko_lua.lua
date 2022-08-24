@@ -1,3 +1,4 @@
+---@diagnostic disable: missing-parameter
 return {
   settings = {
     Lua = {

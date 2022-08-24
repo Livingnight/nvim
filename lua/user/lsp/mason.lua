@@ -15,20 +15,14 @@ local servers = {
   "html",
   "jdtls",
   "jsonls",
-  "solc",
-  "solidity_ls",
   "sumneko_lua",
-  "tflint",
-  "terraformls",
   "tsserver",
   "pyright",
   "yamlls",
   "bashls",
   "clangd",
   "rust_analyzer",
-  "taplo",
-  "zk@v0.10.1",
-  "lemminx",
+  "marksman",
 }
 
 local settings = {
@@ -100,6 +94,11 @@ for _, server in pairs(servers) do
     local tsserver_opts = require "user.lsp.settings.tsserver"
     opts = vim.tbl_deep_extend("force", tsserver_opts, opts)
   end
+
+--  if server == "cssls" then
+ --   local cssls_opts = require "user.lsp.settings.cssls"
+  --  opts = vim.tbl_deep_extend("force", cssls_opts, opts)
+  -- end
 
   if server == "pyright" then
     local pyright_opts = require "user.lsp.settings.pyright"

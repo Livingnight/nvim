@@ -4,7 +4,7 @@ return {
   cmd = { "ls_emmet", "--stdio" },
   filetypes = {
     "html",
-    "css",
+    -- "css",
     "scss",
     "javascript",
     "javascriptreact",

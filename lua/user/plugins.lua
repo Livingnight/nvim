@@ -74,7 +74,7 @@ return packer.startup(function(use)
       end, 100)
     end,
   }
-  use "RRethy/vim-illuminate"
+  use { "RRethy/vim-illuminate" }
   use "j-hui/fidget.nvim"
   use "lvimuser/lsp-inlayhints.nvim"
   -- use "simrat39/inlay-hints.nvim"
@@ -90,15 +90,14 @@ return packer.startup(function(use)
   use "hrsh7th/cmp-emoji"
   use "hrsh7th/cmp-nvim-lua"
   use "zbirenbaum/copilot-cmp"
-  use { "tzachar/cmp-tabnine", commit = "1a8fd2795e4317fd564da269cc64a2fa17ee854e", 
-run = "./install.sh" }
+  use { "tzachar/cmp-tabnine", commit = "1a8fd2795e4317fd564da269cc64a2fa17ee854e", run = "./install.sh" }
 
   -- Snippet
   use "L3MON4D3/LuaSnip" --snippet engine
   use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
 
   -- Syntax/Treesitter
-  use "nvim-treesitter/nvim-treesitter"
+  use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
   use "JoosepAlviste/nvim-ts-context-commentstring"
   use "p00f/nvim-ts-rainbow"
   use "nvim-treesitter/playground"
@@ -139,14 +138,20 @@ run = "./install.sh" }
   use "ziontee113/color-picker.nvim"
 
   -- Colorschemes
+  use "tiagovla/tokyodark.nvim"
+  use "lunarvim/horizon.nvim"
   use "lunarvim/onedarker.nvim"
   use "lunarvim/darkplus.nvim"
-  -- use "folke/tokyonight.nvim"
-  -- use "lunarvim/colorschemes"
+  use "folke/tokyonight.nvim"
+  use "lunarvim/colorschemes"
 
   -- Utility
   use "rcarriga/nvim-notify"
   use "stevearc/dressing.nvim"
+  -- use {
+  --   "glepnir/lspsaga.nvim",
+  --   branch = "main",
+  -- }
   use "ghillb/cybu.nvim"
   use "moll/vim-bbye"
   use "lewis6991/impatient.nvim"
@@ -199,8 +204,8 @@ run = "./install.sh" }
   use "windwp/nvim-spectre"
 
   -- Session
-  use "rmagatti/auto-session"
-  use "rmagatti/session-lens"
+  -- use "rmagatti/auto-session"
+  -- use "rmagatti/session-lens"
 
   -- Quickfix
   use "kevinhwang91/nvim-bqf"
@@ -253,8 +258,17 @@ run = "./install.sh" }
   use {
     "iamcco/markdown-preview.nvim",
     run = "cd app && npm install",
-    ft = "markdown",
+    setup = function()
+      vim.g.mkdp_filetypes = { "markdown", "telekasten" }
+    end,
+    ft = { "markdown", "telekasten" },
   }
+  -- use {
+  --   "iamcco/markdown-preview.nvim",
+  --   run = "cd app && npm install",
+  --   ft = { "telekasten", "markdown" },
+  --   opt = false,
+  -- }
 
   -- Graveyard
   -- use "romgrk/nvim-treesitter-context"

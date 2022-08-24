@@ -5,9 +5,9 @@ end
 
 local icons = require "user.icons"
 
--- vim.api.nvim_set_hl(0, "WinBarSeparator", { fg = "#111fff" })
--- local fg = vim.api.nvim_get_hl_by_name('DiffAdd', 0).background
--- local bg = vim.api.nvim_get_hl_by_name('DiffAdd', 0).foreground
+vim.api.nvim_set_hl(0, "WinBarSeparator", { fg = "#111fff" })
+local fg = vim.api.nvim_get_hl_by_name('DiffAdd', 0).background
+local bg = vim.api.nvim_get_hl_by_name('DiffAdd', 0).foreground
 
 local space = ""
 

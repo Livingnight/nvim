@@ -113,4 +113,5 @@ telekasten.setup {
 
   -- should all links be updated when a file is renamed
   rename_update_links = true,
+  -- media_previewer = "teles-previewer",
 }
