@@ -166,7 +166,7 @@ keymap("n", "<m-/>", "<cmd>lua require('Comment.api').toggle.linewise.current()<
 keymap("x", "<m-/>", '<ESC><CMD>lua require("Comment.api").toggle.linewise(vim.fn.visualmode())<CR>', opts)
 
 keymap("i", "jk", "<ESC>", opts)
-keymap("i", "kj", "<ESC>", opts)
+-- keymap("i", "kj", "<ESC>", opts)
 
 vim.api.nvim_set_keymap(
   "n",
