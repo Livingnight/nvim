@@ -183,7 +183,8 @@ run = "./install.sh" }
 
   -- Comment
   use "numToStr/Comment.nvim"
-  use "folke/todo-comments.nvim"
+  -- use "folke/todo-comments.nvim"
+  use "B4mbus/todo-comments.nvim"
 
   -- Terminal
   use {
