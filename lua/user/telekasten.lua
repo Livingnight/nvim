@@ -6,6 +6,12 @@ if not status_ok then
   return
 end
 
+-- NOTE for Windows users:
+-- - don't use Windows
+-- - try WSL2 on Windows and pretend you're on Linux
+-- - if you **must** use Windows, use "/Users/myname/zettelkasten" instead of "~/zettelkasten"
+-- - NEVER use "C:\Users\myname" style paths
+-- - Using `vim.fn.expand("~/zettelkasten")` should work now but mileage will vary with anything outside of finding and opening files
 telekasten.setup {
   home = home,
 
@@ -29,10 +35,24 @@ telekasten.setup {
   -- markdown file extension
   extension = ".md",
 
+  -- Generate note filenames. One of:
+  -- "title" (default) - Use title if supplied, uuid otherwise
+  -- "uuid" - Use uuid
+  -- "uuid-title" - Prefix title by uuid
+  -- "title-uuid" - Suffix title with uuid
+  new_note_filename = "title",
+  -- file uuid type ("rand" or input for os.date()")
+  uuid_type = "%Y%m%d%H%M",
+  -- UUID separator
+  uuid_sep = "-",
+
   -- following a link to a non-existing note will create it
   follow_creates_nonexisting = true,
   dailies_create_nonexisting = true,
   weeklies_create_nonexisting = true,
+
+  -- skip telescope prompt for goto_today and goto_thisweek
+  journal_auto_open = false,
 
   -- template for new notes (new_note, follow_link)
   -- set to `nil` or do not specify if you do not want a template
@@ -51,6 +71,9 @@ telekasten.setup {
   -- markdown: ![](image_subdir/xxxxx.png)
   image_link_style = "markdown",
 
+  -- default sort option: 'filename', 'modified'
+  sort = "filename",
+
   -- integrate with calendar-vim
   plug_into_calendar = true,
   calendar_opts = {
@@ -67,7 +90,7 @@ telekasten.setup {
   insert_after_inserting = true,
 
   -- tag notation: '#tag', ':tag:', 'yaml-bare'
-  tag_notation = ":tag:",
+  tag_notation = "#tag",
 
   -- command palette theme: dropdown (window) or ivy (bottom panel)
   command_palette_theme = "dropdown",
@@ -78,7 +101,7 @@ telekasten.setup {
 
   -- when linking to a note in subdir/, create a [[subdir/title]] link
   -- instead of a [[title only]] link
-  subdirs_in_links = false,
+  subdirs_in_links = true,
 
   -- template_handling
   -- What to do when creating a new note via `new_note()` or `follow_link()`
@@ -113,5 +136,18 @@ telekasten.setup {
 
   -- should all links be updated when a file is renamed
   rename_update_links = true,
-  -- media_previewer = "teles-previewer",
+
+  vaults = {
+    vault2 = {
+      -- alternate configuration for vault2 here. Missing values are defaulted to
+      -- default values from telekasten.
+      -- e.g.
+      -- home = "/home/user/vaults/personal",
+    },
+  },
+
+  -- how to preview media files
+  -- "telescope-media-files" if you have telescope-media-files.nvim installed
+  -- "catimg-previewer" if you have catimg installed
+  media_previewer = "telescope-media-files",
 }

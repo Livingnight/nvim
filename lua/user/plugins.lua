@@ -64,7 +64,6 @@ return packer.startup(function(use)
   use "SmiteshP/nvim-navic"
   use "simrat39/symbols-outline.nvim"
   use "b0o/SchemaStore.nvim"
-  -- use "github/copilot.vim"
   use {
     "zbirenbaum/copilot.lua",
     event = { "VimEnter" },
@@ -144,9 +143,11 @@ return packer.startup(function(use)
   use "lunarvim/darkplus.nvim"
   use "folke/tokyonight.nvim"
   use "lunarvim/colorschemes"
+  use "ray-x/aurora"
 
   -- Utility
   use "rcarriga/nvim-notify"
+  -- use "declancm/windex.nvim"
   use "stevearc/dressing.nvim"
   -- use {
   --   "glepnir/lspsaga.nvim",
