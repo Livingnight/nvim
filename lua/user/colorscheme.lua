@@ -2,11 +2,15 @@
 -- local colorscheme = "horizon"
 -- local colorscheme = "edge"
 -- local colorscheme = "tokyonight"
-local colorscheme = "aurora"
-vim.g.aurora_italic = 1
-vim.g.aurora_transparent = 1
-vim.g.aurora_bold = 1
-vim.g.aurora_darker = 1
+-- local colorscheme = "aurora"
+local colorscheme = "github_*"
+-- vim.cmd "hi Normal guibg=NONE ctermbg=NONE" -- remove background
+-- vim.cmd "hi EndOfBuffer guibg=NONE ctermbg=NONE"
+-- vim.g.termguicolors = true
+-- vim.g.aurora_italic = 1
+-- vim.g.aurora_transparent = 1
+-- vim.g.aurora_bold = 1
+-- vim.g.aurora_darker = 1
 
 -- vim.g.termguicolors = true
 -- vim.g.edge_style = "aura"
@@ -31,4 +35,21 @@ local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
 if not status_ok then
   -- vim.notify("colorscheme " .. colorscheme .. " not found!")
   return
+end
+
+if colorscheme == "github_*" then
+  require("github-theme").setup {
+    theme_style = "dark_default",
+    dev = true,
+    comment_style = "bold",
+    dark_float = true,
+    dark_sidebar = true,
+    function_style = "bold",
+    -- overrides = function(c)
+    --   return {
+    --     StatusLine = { fg = c.fg_dark, bg = c.bg },
+    --     StatusLineSeparator = { fg = c.fg_dark, bg = c.bg },
+    --   }
+    -- end,
+  }
 end

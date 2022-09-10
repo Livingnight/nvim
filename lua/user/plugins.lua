@@ -144,6 +144,7 @@ return packer.startup(function(use)
   use "folke/tokyonight.nvim"
   use "lunarvim/colorschemes"
   use "ray-x/aurora"
+  use "projekt0n/github-nvim-theme"
 
   -- Utility
   use "rcarriga/nvim-notify"
@@ -175,7 +176,9 @@ return packer.startup(function(use)
   -- use "tiagovla/scope.nvim"
 
   -- Statusline
-  use "christianchiarulli/lualine.nvim"
+  use {
+    "christianchiarulli/lualine.nvim",
+  }
 
   -- Startup
   use "goolord/alpha-nvim"

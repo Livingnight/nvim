@@ -95,8 +95,8 @@ for _, server in pairs(servers) do
     opts = vim.tbl_deep_extend("force", tsserver_opts, opts)
   end
 
---  if server == "cssls" then
- --   local cssls_opts = require "user.lsp.settings.cssls"
+  --  if server == "cssls" then
+  --   local cssls_opts = require "user.lsp.settings.cssls"
   --  opts = vim.tbl_deep_extend("force", cssls_opts, opts)
   -- end
 

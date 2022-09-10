@@ -40,7 +40,7 @@ PS3='Please enter your choice: '
 options=("Nightly" "Release (Default)" "exit script")
 select opt in "${options[@]}"; do
 	case $opt in
-	"Nightly")
+	"RelWithDebInfo")
 		BUILD_TYPE="$opt"
 		break
 		;;
