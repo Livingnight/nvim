@@ -117,8 +117,12 @@ keymap("n", "<C-t>", "<cmd>lua vim.lsp.buf.document_symbol()<cr>", opts)
 -- keymap("n", "<C-s>", "<cmd>vsplit<cr>", opts)
 keymap("n", "<C-z>", "<cmd>ZenMode<cr>", opts)
 
+-- Telekasten
 keymap("n", "<c-n>", "<cmd>Telekasten panel<cr>", opts)
 keymap("n", ",n", "<cmd>Telekasten find_notes<cr>", opts)
+keymap("n", ",c", "<cmd>Telekasten show_calendar<cr>", opts)
+
+-- Lir File Explorer
 keymap("n", "-", ":lua require'lir.float'.toggle()<cr>", opts)
 
 -- keymap("n", "<C-\\>", "<cmd>vsplit<cr>", opts)
@@ -178,12 +182,7 @@ vim.api.nvim_set_keymap(
 -- vim.api.nvim_set_keymap("n", "<tab>", "<cmd>lua require('telescope.builtin').extensions.harpoon.marks(require('telescope.themes').get_dropdown{previewer = false, initial_mode='normal'})<cr>", opts)
 
 -- vim.api.nvim_set_keymap("n", "<tab>", "<cmd>lua require('telescope').extensions.harpoon.marks(require('telescope.themes').get_dropdown{previewer = false, initial_mode='normal', prompt_title='Harpoon'})<cr>", opts)
-vim.api.nvim_set_keymap(
-  "n",
-  "<s-tab>",
-  "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false, initial_mode='normal'})<cr>",
-  opts
-)
+vim.api.nvim_set_keymap("n", "<s-tab>", "<cmd>lua require('telescope.builtin').buffers()<cr>", opts)
 -- vim.api.nvim_set_keymap("n", "<tab>", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", opts)
 vim.api.nvim_set_keymap("n", "<m-g>", "<cmd>Telescope git_branches<cr>", opts)
 vim.api.nvim_set_keymap("n", "<s-enter>", "<cmd>TodoQuickFix<cr>", opts)

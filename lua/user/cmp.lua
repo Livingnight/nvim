@@ -52,6 +52,7 @@ local kind_icons = icons.kind
 
 vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
 vim.api.nvim_set_hl(0, "CmpItemKindTabnine", { fg = "#CA42F0" })
+vim.api.nvim_set_hl(0, "CmpItemKindTreesitter", { fg = "#225500" })
 vim.api.nvim_set_hl(0, "CmpItemKindEmoji", { fg = "#FDE030" })
 vim.api.nvim_set_hl(0, "CmpItemKindCrate", { fg = "#F64D00" })
 
@@ -141,10 +142,26 @@ cmp.setup {
       -- Kind icons
       vim_item.kind = kind_icons[vim_item.kind]
 
+      if entre.source.name == "treesitter" then
+        vim_item.kind = icons.ui.Fire
+        vim_item.kind_hl_group = "CmpItemKindTreesitter"
+      end
+
       if entry.source.name == "cmp_tabnine" then
+        local detail = (entry.completion_item.data or {}).detail
         vim_item.kind = icons.misc.Robot
+
+        if detail and detail:find ".*%%.*" then
+          vim_item.kind = vim_item.kind .. " " .. detail
+        end
+
+        if (entry.completion_item.data or {}).multiline then
+          vim_item.kind = vim_item.kind .. " " .. "[ML]"
+        end
+
         vim_item.kind_hl_group = "CmpItemKindTabnine"
       end
+
       if entry.source.name == "copilot" then
         vim_item.kind = icons.git.Octoface
         vim_item.kind_hl_group = "CmpItemKindCopilot"
@@ -167,49 +184,54 @@ cmp.setup {
 
       -- NOTE: order matters
       vim_item.menu = ({
-        nvim_lsp = "",
-        nvim_lua = "",
-        luasnip = "",
-        buffer = "",
-        path = "",
-        emoji = "",
+        nvim_lsp = "[LSP]",
+        cmp_tabnine = "[T9]",
+        treesitter = "Tree",
+        nvim_lua = "[LUA]",
+        luasnip = "[Snippet]",
+        buffer = "[Buffer]",
+        path = "[Path]",
+        emoji = "[Emoji]",
       })[entry.source.name]
+
       return vim_item
     end,
   },
   sources = {
     { name = "crates", group_index = 1 },
-    {
-      name = "copilot",
-      -- keyword_length = 0,
-      max_item_count = 3,
-      trigger_characters = {
-        {
-          ".",
-          ":",
-          "(",
-          "'",
-          '"',
-          "[",
-          ",",
-          "#",
-          "*",
-          "@",
-          "|",
-          "=",
-          "-",
-          "{",
-          "/",
-          "\\",
-          "+",
-          "?",
-          " ",
-          "\t",
-          "\n",
-        },
-      },
-      group_index = 2,
-    },
+    { name = "cmp_tabnine", group_index = 2 },
+    { name = "treesitter" },
+    -- {
+    --   name = "copilot",
+    --   -- keyword_length = 0,
+    --   max_item_count = 3,
+    --   trigger_characters = {
+    --     {
+    --       ".",
+    --       ":",
+    --       "(",
+    --       "'",
+    --       '"',
+    --       "[",
+    --       ",",
+    --       "#",
+    --       "*",
+    --       "@",
+    --       "|",
+    --       "=",
+    --       "-",
+    --       "{",
+    --       "/",
+    --       "\\",
+    --       "+",
+    --       "?",
+    --       " ",
+    --       "\t",
+    --       "\n",
+    --     },
+    --   },
+    --   group_index = 2,
+    -- },
     {
       name = "nvim_lsp",
       filter = function(entry, ctx)
@@ -235,7 +257,6 @@ cmp.setup {
         end
       end,
     },
-    { name = "cmp_tabnine", group_index = 2 },
     { name = "path", group_index = 2 },
     { name = "emoji", group_index = 2 },
     { name = "lab.quick_data", keyword_length = 4, group_index = 2 },
@@ -245,6 +266,7 @@ cmp.setup {
     comparators = {
       -- require("copilot_cmp.comparators").prioritize,
       -- require("copilot_cmp.comparators").score,
+      require "cmp_tabnine.compare",
       compare.offset,
       compare.exact,
       -- compare.scopes,
@@ -275,6 +297,6 @@ cmp.setup {
     },
   },
   experimental = {
-    ghost_text = true,
+    ghost_text = false,
   },
 }

@@ -267,14 +267,14 @@ local mappings = {
       "Workspace Diagnostics",
     },
     f = {
-      "<cmd>lua vim.lsp.buf.format({ bufnr = bufnr, async = true, filter = function(client) return client.name == 'null-ls' end })<cr>",
+      "<cmd>lua vim.lsp.buf.format({ bufnr = bufnr, filter = function(client) return client.name == 'null-ls' end })<cr>",
       "Format",
     },
     F = { "<cmd>LspToggleAutoFormat<cr>", "Toggle Autoformat" },
     i = { "<cmd>LspInfo<cr>", "Info" },
     h = { "<cmd>lua require('lsp-inlayhints').toggle()<cr>", "Toggle Hints" },
     H = { "<cmd>IlluminationToggle<cr>", "Toggle Doc HL" },
-    I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
+    I = { "<cmd>Mason<cr>", "Installer Info" },
     j = {
       "<cmd>lua vim.diagnostic.goto_next({buffer=0})<CR>",
       "Next Diagnostic",

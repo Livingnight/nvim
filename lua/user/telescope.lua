@@ -162,6 +162,8 @@ telescope.setup {
       theme = "dropdown",
       previewer = false,
       initial_mode = "normal",
+      sort_mru = true,
+      sort_lastused = true,
     },
     planets = {
       show_pluto = true,
@@ -187,7 +189,6 @@ telescope.setup {
       initial_mode = "normal",
     },
 
-
     -- Default configuration for builtin pickers goes here:
     -- picker_name = {
     --   picker_config_key = value,
@@ -200,7 +201,7 @@ telescope.setup {
     media_files = {
       -- filetypes whitelist
       -- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
-      filetypes = { "png", "webp", "jpg", "jpeg" },
+      filetypes = { "png", "jpg", "jpeg", "mp4", "webm", "pdf" },
       find_cmd = "rg", -- find command (defaults to `fd`)
     },
   },

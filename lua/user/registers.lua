@@ -1,3 +1,9 @@
+local ok, registers = pcall(require, "registers.nvim")
+if not ok then
+  return
+end
+
+registers.setup {}
 -- vim.g.registers_return_symbol = "\n" --'⏎' by default
 -- vim.g.registers_tab_symbol = "\t" --'·' by default
 -- vim.g.registers_space_symbol = " " --' ' by default

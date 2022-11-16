@@ -52,7 +52,7 @@ return packer.startup(function(use)
   use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
   use "nvim-lua/popup.nvim"
   -- use "christianchiarulli/lua-dev.nvim"
-  use "folke/lua-dev.nvim"
+  -- use "folke/neodev.nvim"
 
   -- LSP
   use "neovim/nvim-lspconfig" -- enable LSP
@@ -89,7 +89,7 @@ return packer.startup(function(use)
   use "hrsh7th/cmp-emoji"
   use "hrsh7th/cmp-nvim-lua"
   use "zbirenbaum/copilot-cmp"
-  use { "tzachar/cmp-tabnine", commit = "1a8fd2795e4317fd564da269cc64a2fa17ee854e", run = "./install.sh" }
+  use { "tzachar/cmp-tabnine", run = "./install.sh", require = "hrsh7th/nvim-cmp" }
 
   -- Snippet
   use "L3MON4D3/LuaSnip" --snippet engine
@@ -137,12 +137,11 @@ return packer.startup(function(use)
   use "ziontee113/color-picker.nvim"
 
   -- Colorschemes
+  use "marko-cerovac/material.nvim"
+  use "navarasu/onedark.nvim"
   use "tiagovla/tokyodark.nvim"
-  use "lunarvim/horizon.nvim"
-  use "lunarvim/onedarker.nvim"
-  use "lunarvim/darkplus.nvim"
   use "folke/tokyonight.nvim"
-  use "lunarvim/colorschemes"
+  -- use "lunarvim/colorschemes"
   use "ray-x/aurora"
   use "projekt0n/github-nvim-theme"
 
@@ -177,7 +176,7 @@ return packer.startup(function(use)
 
   -- Statusline
   use {
-    "christianchiarulli/lualine.nvim",
+    "nvim-lualine/lualine.nvim",
   }
 
   -- Startup
@@ -187,13 +186,43 @@ return packer.startup(function(use)
   use "lukas-reineke/indent-blankline.nvim"
 
   -- File Explorer
-  use "kyazdani42/nvim-tree.lua"
-  use "christianchiarulli/lir.nvim"
+  use {
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v2.x",
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "kyazdani42/nvim-web-devicons", -- not strictly required, but recommended
+      "MunifTanjim/nui.nvim",
+      {
+        -- only needed if you want to use the commands with "_with_window_picker" suffix
+        "s1n7ax/nvim-window-picker",
+        tag = "v1.*",
+        config = function()
+          require("window-picker").setup {
+            autoselect_one = true,
+            include_current = false,
+            filter_rules = {
+              -- filter using buffer options
+              bo = {
+                -- if the file type is one of following, the window will be ignored
+                filetype = { "neo-tree", "neo-tree-popup", "notify" },
+
+                -- if the buffer type is one of following, the window will be ignored
+                buftype = { "terminal", "quickfix" },
+              },
+            },
+            other_win_hl_color = "#e35e4f",
+          }
+        end,
+      },
+    },
+  }
+  use "tamago324/lir.nvim"
 
   -- Comment
   use "numToStr/Comment.nvim"
-  -- use "folke/todo-comments.nvim"
-  use "B4mbus/todo-comments.nvim"
+  use "folke/todo-comments.nvim"
+  -- use "B4mbus/todo-comments.nvim"
 
   -- Terminal
   use {
@@ -281,8 +310,8 @@ return packer.startup(function(use)
   -- use "nvim-telescope/telescope-ui-select.nvim"
   -- use "nvim-telescope/telescope-file-browser.nvim"
   -- use 'David-Kunz/cmp-npm' -- doesn't seem to work
-  use { "christianchiarulli/JABS.nvim" }
-  -- use "lunarvim/vim-solidity"
+  use "matbme/JABS.nvim"
+  -- use "lunarvim/vim-soliduse
   -- use "tpope/vim-repeat"
   -- use "Shatur/neovim-session-manager"
   -- use "metakirby5/codi.vim"

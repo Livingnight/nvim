@@ -21,6 +21,7 @@ end
 -- disabling lsp server formatting / making null_ls the only formatting option
 local lsp_formatting = function(bufnr)
   vim.lsp.buf.format {
+    timeout_ms = 2000,
     filter = function(client)
       --apply whatever logic you want(in this example, we'll only use null-ls)
       return client.name == "null-ls"
@@ -55,6 +56,7 @@ null_ls.setup {
   debug = true,
   sources = {
     formatting.prettierd.with {
+      extra_filetypes = { "telekasten" },
       env = {
         PRETTIERD_DEFAULT_CONFIG = vim.fn.expand "~/.config/linter-config/.prettierrc.json",
       },
